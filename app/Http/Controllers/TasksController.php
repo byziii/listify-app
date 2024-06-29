@@ -8,18 +8,6 @@ use Illuminate\Http\Response;
 
 class TasksController extends Controller
 {
-    public function welcome() {
-        return view('tasks.welcome');
-    }
-
-    public function login() {    
-        return view('tasks.login');
-    }
-
-    public function newuser() {    
-        return view('tasks.newuser');
-    }
-
     public function todo() {    
         return view('tasks.index');
     }
@@ -28,7 +16,6 @@ class TasksController extends Controller
         return view('tasks.complete_index');
     }
     
-
     /** add new tasks */
     public function add(Request $request)       
     {
