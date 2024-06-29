@@ -171,7 +171,7 @@
         }
 
         .todo-table-container {
-            max-height: 300px; /* Adjust the height as needed */
+            max-height: 65%; /* Adjust the height as needed */
             overflow-y: auto;
             width: 100%;
             margin: 1px auto;
