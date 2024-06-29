@@ -53,9 +53,14 @@
             <h1>Your path of productivity<br>start here.</h1>
             <p>Make Every Moment Count.</p>
             <form method="POST" action="/todo">
-            <a href="#" class="button">Get started</a>
+            <a href="#" class="button" onclick="redirectToTasks()">Get started</a>
             </form>
             </div>
         </div>
+        <script>
+            function redirectToTasks() {
+                window.location.href = '/tasks'; // Redirect to tasks page
+            }
+        </script>
     </body>
 </html>

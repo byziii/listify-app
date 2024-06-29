@@ -8,11 +8,11 @@
                 <span class="username">Admin</span>
             </div>
             <div class="menu">
-                <div class="menu-item">
+                <div class="menu-item" onclick="redirectToTasks()">
                     <span class="icon">☀️</span>
                     <span class="menu-text">To Do</span>
                 </div>
-                <div class="menu-item">
+                <div class="menu-item" onclick="redirectToCompleted()">
                     <span class="icon">✔️</span>
                     <span class="menu-text">Completed</span>
                 </div>
@@ -46,6 +46,14 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
+        function redirectToTasks() {
+            window.location.href = '/tasks'; // Redirect to tasks page
+        }
+        
+        function redirectToCompleted() {
+            window.location.href = '/completed'; // Redirect to completed tasks page
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             const taskInput = document.getElementById('taskInput');
             const addTaskButton = document.getElementById('addTaskButton');
