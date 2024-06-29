@@ -47,24 +47,6 @@ class TasksController extends Controller
         ], 200);
     }
 
-    /** Update task */
-    // public function update(Request $request, int $id)
-    // {
-    //     $validatedData = $request->validate([
-    //         'task_name' => 'required|string|max:255',
-    //     ]);
-
-    //     $task = Todo::findOrFail($id);
-
-    //     $task->task_name = $validatedData['task_name'];
-    //     $task->is_complete = $validatedData['is_complete'];
-    //     $task->save();
-
-    //     return response([
-    //         'message' => "Task updated successfully"
-    //     ], 200);
-    // }
-
     /** Update task status */
     public function update(Request $request, int $id)
     {

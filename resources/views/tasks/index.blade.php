@@ -153,7 +153,7 @@
                     })
                     .catch(error => {
                         console.error('There was an error deleting the task!', error);
-                    });
+                    }); 
             };
 
             window.removeTask = function(button) {
