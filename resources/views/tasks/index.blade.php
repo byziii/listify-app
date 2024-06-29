@@ -59,13 +59,17 @@
             const addTaskButton = document.getElementById('addTaskButton');
             const todoTableBody = document.getElementById('todoTableBody');
 
-            addTaskButton.addEventListener('click', addTask);
+            addTaskButton.addEventListener('click', () => {
+                addTask();
+                location.reload(); // Refresh the page
+            });
+
             taskInput.addEventListener('keypress', event => {
                 if (event.key === 'Enter') {
                     addTask();
+                    location.reload(); // Refresh the page
                 }
             });
-
             // Load tasks from the server when the page loads
             loadTasks();
 
