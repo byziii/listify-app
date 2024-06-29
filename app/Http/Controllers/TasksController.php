@@ -20,6 +20,7 @@ class TasksController extends Controller
         return view('tasks.complete_index');
     }
 
+    /** add new tasks */
     public function add(Request $request)       
     {
         $validatedData = $request->validate([

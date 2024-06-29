@@ -142,18 +142,25 @@
                 const row = button.parentElement.parentElement;
                 const taskId = row.getAttribute('data-id');
                 const taskName = row.children[0].textContent.trim();
-                taskInput.value = taskName;
+                const newTaskName = prompt('Enter new task name:', taskName);
 
-                // Optionally, you can implement updating logic here
-                todoTableBody.removeChild(row);
+                if (newTaskName === null || newTaskName.trim() === '') {
+                    alert('Task name cannot be empty.');
+                    return;
+                }
 
-                axios.delete(`/api/tasks/${taskId}`)
-                    .then(response => {
-                        // Handle successful deletion
-                    })
-                    .catch(error => {
-                        console.error('There was an error deleting the task!', error);
-                    }); 
+                axios.put(`/api/tasks/${taskId}/name`, {
+                    task_name: newTaskName
+                })
+                .then(response => {
+                    const taskCheckbox = row.children[0].querySelector('.task-checkbox');
+                    row.children[0].innerHTML = '';
+                    row.children[0].appendChild(taskCheckbox);
+                    row.children[0].innerHTML += `<span class="task-name"> ${newTaskName}</span>`;
+                })
+                .catch(error => {
+                    console.error('There was an error updating the task!', error);
+                });
             };
 
             window.removeTask = function(button) {

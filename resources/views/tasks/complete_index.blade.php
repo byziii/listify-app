@@ -107,7 +107,7 @@
                 .catch(error => {
                     console.error('There was an error updating the task!', error);
                 });
-};
+            };
 
             window.removeTask = function(button) {
                 const row = button.parentElement.parentElement;
