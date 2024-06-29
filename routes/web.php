@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [TasksController::class, 'welcome']);
 Route::get('/tasks', [TasksController::class, 'todo']);
 Route::get('/completed', [TasksController::class, 'completed']);
+Route::get('/login', [TasksController::class, 'login']);
+Route::get('/createaccount', [TasksController::class, 'newuser']);
 
 // API Routes for Task Management
 Route::prefix('api')->group(function () {
