@@ -98,9 +98,8 @@
                     return;
                 }
 
-                axios.put(`/api/tasks/${taskId}`, {
-                    task_name: newTaskName,
-                    is_complete: 1 // Ensure it remains completed
+                axios.put(`/api/tasks/${taskId}/name`, {
+                    task_name: newTaskName
                 })
                 .then(response => {
                     row.children[0].textContent = newTaskName;
@@ -108,7 +107,7 @@
                 .catch(error => {
                     console.error('There was an error updating the task!', error);
                 });
-            };
+};
 
             window.removeTask = function(button) {
                 const row = button.parentElement.parentElement;

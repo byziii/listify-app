@@ -48,7 +48,7 @@ class TasksController extends Controller
     }
 
     /** Update task status */
-    public function update(Request $request, int $id)
+    public function updateStatus(Request $request, int $id)
     {
         $validatedData = $request->validate([
             'is_complete' => 'required|boolean'
@@ -61,6 +61,22 @@ class TasksController extends Controller
 
         return response([
             'message' => "Task status updated successfully"
+        ], 200);
+    }
+
+    /** Update task name */
+    public function updateTaskName(Request $request, int $id)
+    {
+        $validatedData = $request->validate([
+            'task_name' => 'required|string|max:255'
+        ]);
+
+        $task = Todo::findOrFail($id);
+        $task->task_name = $validatedData['task_name'];
+        $task->save();
+
+        return response([
+            'message' => "Task name updated successfully"
         ], 200);
     }
 

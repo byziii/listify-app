@@ -12,5 +12,6 @@ Route::prefix('api')->group(function () {
     Route::get('/tasks', [TasksController::class, 'get']); // Get all tasks
     Route::post('/tasks', [TasksController::class, 'add']); // Add a new task
     Route::delete('/tasks/{id}', [TasksController::class, 'delete']); // Delete a task
-    Route::put('/tasks/{id}', [TasksController::class, 'update']); // Update an existing task
+    Route::put('/tasks/{id}', [TasksController::class, 'updateStatus']); // Update an existing task
+    Route::put('/tasks/{id}/name', [TasksController::class, 'updateTaskName']); // Update task name
 });
