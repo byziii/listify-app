@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LISTIFY</title>
+    <link rel="icon" href="{{ URL('images/listify.png') }}" type="image/x-icon"/>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -41,8 +42,8 @@
         .listify-picture {
             width: 50px;
             height: 50px;
-            border-radius: 50%;
-            margin-right: 10px;
+            border-radius: 15%;
+            margin-right: 20px;
         }
 
         .logo-name {
