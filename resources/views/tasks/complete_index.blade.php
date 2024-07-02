@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+    <div class="container">
         <div class="sidebar">
             <div class="listify">
                 <img src="{{ URL('images/listify.png') }}" alt="Listify" class="listify-picture">
@@ -9,7 +9,7 @@
             </div>
             <div class="menu">
                 <div class="menu-item" onclick="redirectToTasks()">
-                    <span class="icon">☀️</span>
+                    <span class="icon">📋</span>
                     <span class="menu-text">To Do</span>
                 </div>
                 <div class="menu-item" onclick="redirectToCompleted()">

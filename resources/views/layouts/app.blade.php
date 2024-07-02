@@ -23,6 +23,7 @@
             height: 80%;
             width: 70%;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            border-radius: 30px;
         }
 
         .sidebar {
@@ -32,6 +33,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            border-radius: 30px 0 0 30px;
         }
 
         .listify {
@@ -88,6 +90,12 @@
             background-color: #1954A4;
         }
 
+        .max-list {
+            font-size: 0.7em;
+            text-align: center;
+            font-weight: bold;
+        }
+
         .main-content {
             flex-grow: 1;
             background-color: #fff;
@@ -95,6 +103,7 @@
             display: flex;
             flex-direction: column;
             position: relative;
+            border-radius: 0 30px 30px 0;
         }
 
         h1 {
