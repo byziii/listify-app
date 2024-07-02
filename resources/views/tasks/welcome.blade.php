@@ -9,7 +9,8 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #F8F9FA;
-            color: #333;
+            background: URL('images/bg.jpg') no-repeat center center fixed;
+            background-size: cover;
             margin: 0;
             padding: 0;
         }
@@ -43,8 +44,8 @@
         }
         .button {
             display: inline-block;
-            padding: 10px 20px;
-            font-size: 1.3em;
+            padding: 12px 30px;
+            font-size: 1.2em;
             color: #fff;
             background-color: #287AEA;
             text-decoration: none;

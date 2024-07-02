@@ -17,6 +17,9 @@
                     <span class="menu-text">Completed</span>
                 </div>
             </div>
+            <div class="new-list">
+                <button class="new-list-button">+ New list</button>
+            </div>
         </div>
         <div class="main-content">
             <h1>☀️ To Do</h1>
