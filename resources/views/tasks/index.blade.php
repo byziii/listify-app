@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+    <div class="container">
         <div class="sidebar">
             <div class="listify">
                 <img src="{{ URL('images/listify.png') }}" alt="Listify" class="listify-picture">
