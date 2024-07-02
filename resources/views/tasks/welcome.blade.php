@@ -51,7 +51,7 @@
             border-radius: 5px;
         }
         .button:hover {
-            background-color: #555;
+            background-color: #1954A4;
         }
     </style>
     </head>

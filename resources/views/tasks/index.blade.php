@@ -39,7 +39,7 @@
                 </table>
             </div>
             <div class="add-task">
-                <input type="text" class="task-input" placeholder="Add New Todo" id="taskInput">
+                <input type="text" class="task-input" placeholder="Add New Task" id="taskInput">
                 <button class="add-task-button" id="addTaskButton">Add</button>
             </div>
         </div>
