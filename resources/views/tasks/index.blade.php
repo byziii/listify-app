@@ -17,9 +17,6 @@
                     <span class="menu-text">Completed</span>
                 </div>
             </div>
-            <div class="new-list">
-                <button class="new-list-button">+ New list</button>
-            </div>
         </div>
         <div class="main-content">
             <h1>☀️ To Do</h1>
@@ -59,19 +56,13 @@
             const addTaskButton = document.getElementById('addTaskButton');
             const todoTableBody = document.getElementById('todoTableBody');
 
-            addTaskButton.addEventListener('click', () => {
-                addTask();
-                location.reload(); // Refresh the page
-            });
-
-            taskInput.addEventListener('keypress', event => {
-                if (event.key === 'Enter') {
-                    addTask();
-                    location.reload(); // Refresh the page
-                }
-            });
             // Load tasks from the server when the page loads
             loadTasks();
+
+            addTaskButton.addEventListener('click', addTask);
+            taskInput.addEventListener('keypress', event => {
+                if (event.key === 'Enter') addTask();
+            });
 
             function loadTasks() {
                 axios.get('/api/tasks')
@@ -98,8 +89,7 @@
                     is_complete: 1
                 })
                 .then(response => {
-                    appendTaskToTable(response.data.task);
-                    taskInput.value = '';
+                    location.reload();
                 })
                 .catch(error => {
                     console.error('There was an error adding the task!', error);

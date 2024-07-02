@@ -72,21 +72,6 @@
             margin-right: 30px;
         }
         
-        .new-list-button {
-            width: 100%;
-            padding: 10px;
-            font-size: 1.2em;
-            background-color: #287AEA;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .new-list-button:hover {
-            background-color: #1954A4;
-        }
-
         .main-content {
             flex-grow: 1;
             background-color: #fff;
