@@ -1,11 +1,11 @@
-@extends('layouts.complete_app')
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
         <div class="sidebar">
-            <div class="profile">
-                <img src="path/to/profile-picture.jpg" alt="Profile Picture" class="profile-picture">
-                <span class="username">Admin</span>
+            <div class="listify">
+                <img src="{{ URL('images/listify.png') }}" alt="Listify" class="listify-picture">
+                <span class="logo-name">Listify</span>
             </div>
             <div class="menu">
                 <div class="menu-item" onclick="redirectToTasks()">

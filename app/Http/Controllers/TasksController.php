@@ -8,6 +8,10 @@ use Illuminate\Http\Response;
 
 class TasksController extends Controller
 {
+    public function welcome() {    
+        return view('tasks.welcome');
+    }
+
     public function todo() {    
         return view('tasks.index');
     }

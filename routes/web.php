@@ -1,12 +1,9 @@
 <?php
 
-use App\Http\Controllers\AccountController;
 use App\Http\Controllers\TasksController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [AccountController::class, 'welcome']);
-Route::get('/login', [AccountController::class, 'login']);
-Route::get('/createaccount', [AccountController::class, 'newuser']);
+Route::get('/', [TasksController::class, 'welcome']);
 Route::get('/tasks', [TasksController::class, 'todo']);
 Route::get('/completed', [TasksController::class, 'completed']);
 

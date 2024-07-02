@@ -32,20 +32,20 @@
             justify-content: space-between;
         }
 
-        .profile {
+        .listify {
             display: flex;
             align-items: center;
             margin-bottom: 50px;
         }
 
-        .profile-picture {
+        .listify-picture {
             width: 50px;
             height: 50px;
             border-radius: 50%;
             margin-right: 10px;
         }
 
-        .username {
+        .logo-name {
             font-size: 1.2em;
             font-weight: bold;
         }
