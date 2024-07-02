@@ -46,7 +46,7 @@
             padding: 10px 20px;
             font-size: 1.3em;
             color: #fff;
-            background-color: #002f6c;
+            background-color: #287AEA;
             text-decoration: none;
             border-radius: 5px;
         }

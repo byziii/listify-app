@@ -10,7 +10,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #002f6c;
+            background-color: lightgray;
             height: 100vh;
             display: flex;
             justify-content: center;
@@ -76,7 +76,7 @@
             width: 100%;
             padding: 10px;
             font-size: 1.2em;
-            background-color: #333;
+            background-color: #287AEA;
             color: #fff;
             border: none;
             border-radius: 5px;
@@ -84,7 +84,7 @@
         }
 
         .new-list-button:hover {
-            background-color: #555;
+            background-color: #1954A4;
         }
 
         .main-content {
@@ -129,7 +129,7 @@
         .add-task-button {
             padding: 10px 20px;
             font-size: 1.2em;
-            background-color: #333;
+            background-color: #287AEA;
             color: #fff;
             border: none;
             border-radius: 0 5px 5px 0;
@@ -137,7 +137,7 @@
         }
 
         .add-task-button:hover {
-            background-color: #555;
+            background-color: #1954A4;
         }
 
         .edit-btn, .remove-btn {
