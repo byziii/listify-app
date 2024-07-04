@@ -8,11 +8,11 @@
                 <span class="logo-name">Listify</span>
             </div>
             <div class="menu">
-                <div class="menu-item" onclick="redirectToTasks()">
+                <div class="menu-item" onclick="redirectTo('/tasks')">
                     <span class="icon">📋</span>
                     <span class="menu-text">To Do</span>
                 </div>
-                <div class="menu-item" onclick="redirectToCompleted()">
+                <div class="menu-item" onclick="redirectTo('/completed')">
                     <span class="icon">✔️</span>
                     <span class="menu-text">Completed</span>
                 </div>
@@ -49,61 +49,46 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const taskInput = document.getElementById('taskInput');
-            const addTaskButton = document.getElementById('addTaskButton');
-            const todoTableBody = document.getElementById('todoTableBody');
+         document.addEventListener('DOMContentLoaded', () => {
+            initialize();
         });
-        
-        function redirectToTasks() {
-            window.location.href = '/tasks'; // Redirect to tasks page
-        }
-        
-        function redirectToCompleted() {
-            window.location.href = '/completed'; // Redirect to completed tasks page
+
+        function initialize() {
+            loadTasks();
+            document.getElementById('addTaskButton').addEventListener('click', addTask);
+            document.getElementById('taskInput').addEventListener('keypress', event => {
+                if (event.key === 'Enter') addTask();
+            });
         }
 
-        // Load tasks from the server when the page loads
-        loadTasks();
-
-        addTaskButton.addEventListener('click', addTask);
-        taskInput.addEventListener('keypress', event => {
-            if (event.key === 'Enter') addTask();
-        });
+        function redirectTo(path) {
+            window.location.href = path;
+        }
 
         function loadTasks() {
             axios.get('/api/tasks')
                 .then(response => {
                     const tasks = response.data.tasks;
-                    tasks.forEach(task => {
-                        appendTaskToTable(task);
-                    });
+                    tasks.forEach(task => appendTaskToTable(task));
                 })
-                .catch(error => {
-                    console.error('There was an error loading the tasks!', error);
-                });
+                .catch(error => console.error('Error loading tasks!', error));
         }
 
         function addTask() {
+            const taskInput = document.getElementById('taskInput');
             const taskName = taskInput.value.trim();
-            if (taskName === '') {
+            if (!taskName) {
                 alert('Please enter a task name.');
                 return;
             }
 
-            axios.post('/api/tasks', {
-                task_name: taskName,
-                is_complete: 1
-            })
-            .then(response => {
-                location.reload();
-            })
-            .catch(error => {
-                console.error('There was an error adding the task!', error);
-            });
+            axios.post('/api/tasks', { task_name: taskName, is_complete: 1 })
+                .then(() => location.reload())
+                .catch(error => console.error('Error adding task!', error));
         }
         
         function appendTaskToTable(task) {
+            const todoTableBody = document.getElementById('todoTableBody');
             const taskRow = document.createElement('tr');
             taskRow.setAttribute('data-id', task.id);
             taskRow.innerHTML = `
@@ -113,69 +98,51 @@
                 </td>
                 <td class="td2">${task.is_complete ? 'Completed' : 'Not Completed'}</td>
                 <td class="action-buttons">
-                    <button class="edit-btn" onclick="editTask(this)">✏️</button>
-                    <button class="remove-btn" onclick="removeTask(this)">🗑️</button>
+                    <button class="edit-btn" onclick="editTask(${task.id}, this)">✏️</button>
+                    <button class="remove-btn" onclick="removeTask(${task.id}, this)">🗑️</button>
                 </td>
             `;
-
             todoTableBody.appendChild(taskRow);
 
-            const checkbox = taskRow.querySelector('.task-checkbox');
-            checkbox.addEventListener('change', function() {
-                const taskId = taskRow.getAttribute('data-id');
-                const isComplete = checkbox.checked ? 1 : 0;
+            taskRow.querySelector('.task-checkbox').addEventListener('change', function() {
+                updateTaskStatus(task.id, this.checked ? 1 : 0, taskRow);
+            });
+        }
 
-                axios.put(`/api/tasks/${taskId}`, {
-                    is_complete: isComplete
-                })
-                .then(response => {
-                    // Update the status in the tableD
+        function updateTaskStatus(taskId, isComplete, taskRow) {
+            axios.put(`/api/tasks/${taskId}`, { is_complete: isComplete })
+                .then(() => {
                     taskRow.children[1].textContent = isComplete ? 'Completed' : 'Not Completed';
                 })
-                .catch(error => {
-                    console.error('There was an error updating the task status!', error);
-                });
-            });
-            
+                .catch(error => console.error('Error updating task status!', error));
         }
         
-        window.editTask = function(button) {
-            const row = button.parentElement.parentElement;
-            const taskId = row.getAttribute('data-id');
+        function editTask(taskId, button) {
+            const row = button.closest('tr');
             const taskName = row.children[0].textContent.trim();
             const newTaskName = prompt('Enter new task name:', taskName);
 
-            if (newTaskName === null || newTaskName.trim() === '') {
+            if (!newTaskName.trim()) {
                 alert('Task name cannot be empty.');
                 return;
             }
 
-            axios.put(`/api/tasks/${taskId}/name`, {
-                task_name: newTaskName
-            })
-            .then(response => {
-                const taskCheckbox = row.children[0].querySelector('.task-checkbox');
-                row.children[0].innerHTML = '';
-                row.children[0].appendChild(taskCheckbox);
-                row.children[0].innerHTML += `<span class="task-name"> ${newTaskName}</span>`;
-            })
-            .catch(error => {
-                console.error('There was an error updating the task!', error);
-            });
-        };
+            axios.put(`/api/tasks/${taskId}/name`, { task_name: newTaskName })
+                .then(() => {
+                    const taskCheckbox = row.querySelector('.task-checkbox');
+                    row.children[0].innerHTML = '';
+                    row.children[0].appendChild(taskCheckbox);
+                    row.children[0].innerHTML += ` ${newTaskName}`;
+                })
+                .catch(error => console.error('Error updating task!', error));
+        }
 
-        window.removeTask = function(button) {
-            const row = button.parentElement.parentElement;
-            const taskId = row.getAttribute('data-id');
-            todoTableBody.removeChild(row);
+        function removeTask(taskId, button) {
+            const row = button.closest('tr');
+            document.getElementById('todoTableBody').removeChild(row);
 
             axios.delete(`/api/tasks/${taskId}`)
-                .then(response => {
-                    // Handle successful deletion
-                })
-                .catch(error => {
-                    console.error('There was an error deleting the task!', error);
-                });
+                .catch(error => console.error('Error deleting task!', error));
         }
     </script>
 @endsection
